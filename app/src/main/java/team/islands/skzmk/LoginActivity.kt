@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import team.islands.skzmk.ui.theme.СКЗМКTheme
 import team.islands.skzmk.ui.views.Login
 
@@ -27,6 +28,7 @@ class LoginActivity : ComponentActivity() {
     }
 }
 
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun LoginScreen() {
     Login()

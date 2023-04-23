@@ -2,6 +2,7 @@ package team.islands.skzmk.ui.views
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -10,13 +11,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material.icons.rounded.ArrowForward
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,10 +35,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import team.islands.skzmk.ui.theme.СКЗМКTheme
 
-@Preview(showBackground = true, showSystemUi = true)
 @OptIn(ExperimentalMaterial3Api::class)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun Login() {
+fun Registration() {
     СКЗМКTheme {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -53,7 +54,7 @@ fun Login() {
             )
 
             Text(
-                text = "Вход",
+                text = "Регистрация",
                 fontWeight = FontWeight.Black,
                 fontSize = 32.sp,
                 modifier = Modifier.padding(bottom = 22.dp)
@@ -67,6 +68,16 @@ fun Login() {
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(22.dp)
+            )
+
+            var name by remember { mutableStateOf("") }
+            OutlinedTextField(value = name,
+                onValueChange = { name = it },
+                label = { Text("Фамилия И. О.") },
+                singleLine = true,
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(start = 22.dp, end = 22.dp, bottom = 22.dp)
             )
 
             var password by rememberSaveable { mutableStateOf("") }
@@ -92,14 +103,13 @@ fun Login() {
                     }
                 })
 
-            TextButton(
-                modifier = Modifier
-                    .align(Alignment.Start)
-                    .padding(top = 0.dp, start = 50.dp),
+            OutlinedButton(
                 onClick = { },
-
-                ) {
-                Text("Не помню пароль")
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 12.dp, start = 58.dp, end = 58.dp)
+            ) {
+                Text(text = "ЗАРЕГИСТРИРОВАТЬСЯ")
             }
 
             OutlinedButton(
@@ -108,16 +118,13 @@ fun Login() {
                     .fillMaxWidth()
                     .padding(top = 22.dp, start = 58.dp, end = 58.dp)
             ) {
-                Text(text = "ВХОД")
-            }
-
-            OutlinedButton(
-                onClick = { },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 12.dp, start = 58.dp, end = 58.dp)
-            ) {
-                Text(text = "РЕГИСТРАЦИЯ")
+                Row {
+                    Text(text = "ВХОД")
+                    Icon(
+                        imageVector = Icons.Rounded.ArrowForward,
+                        contentDescription = null
+                    )
+                }
             }
         }
     }
